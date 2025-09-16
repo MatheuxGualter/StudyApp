@@ -1,8 +1,8 @@
-package com.example.flashcards.data
+package com.example.StudyApp.data
 
 import androidx.room.TypeConverter
-import com.example.flashcards.data.converter.FlashcardTypeConverter
-import com.example.flashcards.data.converter.ListConverter
+import com.example.StudyApp.data.converter.FlashcardTypeConverter
+import com.example.StudyApp.data.converter.ListConverter
 import java.util.Date
 
 class Converters {

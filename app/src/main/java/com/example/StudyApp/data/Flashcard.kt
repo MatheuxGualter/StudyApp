@@ -1,11 +1,10 @@
 // File: app/src/main/java/com/example/flashcards/data/Flashcard.kt
-package com.example.flashcards.data
+package com.example.StudyApp.data
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import androidx.room.TypeConverters
 import java.util.Date // Mantenha este import se usar Date em outros lugares
 
 @Entity(

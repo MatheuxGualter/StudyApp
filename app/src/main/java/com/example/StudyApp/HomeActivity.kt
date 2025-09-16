@@ -1,9 +1,9 @@
-package com.example.flashcards
+package com.example.StudyApp
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.flashcards.databinding.ActivityHomeBinding
+import com.example.StudyApp.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding

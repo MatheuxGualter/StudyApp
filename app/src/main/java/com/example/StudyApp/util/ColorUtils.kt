@@ -1,4 +1,4 @@
-package com.example.flashcards.util
+package com.example.StudyApp.util
 
 import android.graphics.Color
 import java.util.Random

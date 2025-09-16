@@ -1,13 +1,13 @@
-package com.example.flashcards.ui
+package com.example.StudyApp.ui
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.flashcards.data.Flashcard
-import com.example.flashcards.data.FlashcardDatabase
-import com.example.flashcards.data.FlashcardRepository
-import com.example.flashcards.data.UserLocation
-import com.example.flashcards.data.UserLocationDao
+import com.example.StudyApp.data.Flashcard
+import com.example.StudyApp.data.FlashcardDatabase
+import com.example.StudyApp.data.FlashcardRepository
+import com.example.StudyApp.data.UserLocation
+import com.example.StudyApp.data.UserLocationDao
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import java.util.Date

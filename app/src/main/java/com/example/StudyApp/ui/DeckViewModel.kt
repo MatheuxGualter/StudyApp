@@ -1,11 +1,11 @@
-package com.example.flashcards.ui
+package com.example.StudyApp.ui
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.flashcards.data.Deck
-import com.example.flashcards.data.DeckRepository
-import com.example.flashcards.data.FlashcardDatabase
+import com.example.StudyApp.data.Deck
+import com.example.StudyApp.data.DeckRepository
+import com.example.StudyApp.data.FlashcardDatabase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 

@@ -1,22 +1,17 @@
-package com.example.flashcards
+package com.example.StudyApp
 
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.LinearLayout
 import android.widget.RadioButton
-import android.widget.RadioGroup
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import com.example.flashcards.data.Flashcard
-import com.example.flashcards.data.FlashcardType
-import com.example.flashcards.databinding.ActivityExerciseBinding
-import com.example.flashcards.ui.FlashcardViewModel
+import com.example.StudyApp.data.Flashcard
+import com.example.StudyApp.data.FlashcardType
+import com.example.StudyApp.databinding.ActivityExerciseBinding
+import com.example.StudyApp.ui.FlashcardViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

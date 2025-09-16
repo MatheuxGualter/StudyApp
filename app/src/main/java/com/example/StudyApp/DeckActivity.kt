@@ -1,4 +1,4 @@
-package com.example.flashcards
+package com.example.StudyApp
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,11 +10,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.flashcards.data.Deck
-import com.example.flashcards.databinding.ActivityDeckBinding
-import com.example.flashcards.ui.DeckAdapter
-import com.example.flashcards.ui.DeckViewModel
-import com.example.flashcards.ui.FlashcardViewModel
+import com.example.StudyApp.data.Deck
+import com.example.StudyApp.databinding.ActivityDeckBinding
+import com.example.StudyApp.ui.DeckAdapter
+import com.example.StudyApp.ui.DeckViewModel
+import com.example.StudyApp.ui.FlashcardViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

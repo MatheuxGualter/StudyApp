@@ -1,4 +1,4 @@
-package com.example.flashcards.data
+package com.example.StudyApp.data
 
 import android.content.Context
 import androidx.room.Database

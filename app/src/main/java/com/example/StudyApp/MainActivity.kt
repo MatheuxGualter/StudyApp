@@ -1,4 +1,4 @@
-package com.example.flashcards
+package com.example.StudyApp
 
 import android.Manifest
 import android.content.Intent
@@ -12,17 +12,16 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.EditText
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.flashcards.data.Flashcard
-import com.example.flashcards.data.FlashcardType
-import com.example.flashcards.databinding.ActivityMainBinding
-import com.example.flashcards.ui.FlashcardAdapter
-import com.example.flashcards.ui.FlashcardViewModel
+import com.example.StudyApp.data.Flashcard
+import com.example.StudyApp.data.FlashcardType
+import com.example.StudyApp.databinding.ActivityMainBinding
+import com.example.StudyApp.ui.FlashcardAdapter
+import com.example.StudyApp.ui.FlashcardViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.dialog.MaterialAlertDialogBuilder

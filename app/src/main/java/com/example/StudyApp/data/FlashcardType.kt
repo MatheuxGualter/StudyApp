@@ -1,4 +1,4 @@
-package com.example.flashcards.data
+package com.example.StudyApp.data
 
 enum class FlashcardType {
     FRONT_BACK,

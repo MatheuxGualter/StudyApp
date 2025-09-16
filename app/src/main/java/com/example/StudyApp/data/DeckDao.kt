@@ -1,4 +1,4 @@
-package com.example.flashcards.data
+package com.example.StudyApp.data
 
 import androidx.room.Dao
 import androidx.room.Delete

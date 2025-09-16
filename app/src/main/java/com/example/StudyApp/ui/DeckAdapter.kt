@@ -1,6 +1,5 @@
-package com.example.flashcards.ui
+package com.example.StudyApp.ui
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.flashcards.R
-import com.example.flashcards.data.Deck
-import com.example.flashcards.util.ColorUtils
+import com.example.StudyApp.R
+import com.example.StudyApp.data.Deck
+import com.example.StudyApp.util.ColorUtils
 import com.google.android.material.card.MaterialCardView
 
 class DeckAdapter(

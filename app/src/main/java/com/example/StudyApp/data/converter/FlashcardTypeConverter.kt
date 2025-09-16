@@ -1,7 +1,7 @@
-package com.example.flashcards.data.converter
+package com.example.StudyApp.data.converter
 
 import androidx.room.TypeConverter
-import com.example.flashcards.data.FlashcardType
+import com.example.StudyApp.data.FlashcardType
 
 class FlashcardTypeConverter {
     @TypeConverter

@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.flashcards"
+    namespace = "com.example.StudyApp"
     compileSdk = 34
 
     defaultConfig {

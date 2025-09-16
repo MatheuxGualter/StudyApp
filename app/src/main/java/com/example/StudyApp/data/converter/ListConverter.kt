@@ -1,4 +1,4 @@
-package com.example.flashcards.data.converter
+package com.example.StudyApp.data.converter
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson

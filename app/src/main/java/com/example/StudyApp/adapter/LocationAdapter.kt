@@ -1,4 +1,4 @@
-package com.example.flashcards.adapter
+package com.example.StudyApp.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.flashcards.data.UserLocation
-import com.example.flashcards.databinding.ItemLocationBinding
+import com.example.StudyApp.data.UserLocation
+import com.example.StudyApp.databinding.ItemLocationBinding
 import java.util.Locale
 
 class LocationAdapter(
@@ -38,7 +38,7 @@ class LocationAdapter(
             
             binding.locationCoordinates.text = String.format(
                 Locale.getDefault(),
-                context.getString(com.example.flashcards.R.string.location_coordinates),
+                context.getString(com.example.StudyApp.R.string.location_coordinates),
                 location.latitude,
                 location.longitude
             )

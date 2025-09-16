@@ -1,4 +1,4 @@
-package com.example.flashcards
+package com.example.StudyApp
 
 import android.Manifest
 import android.content.Intent
@@ -14,10 +14,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.flashcards.adapter.LocationAdapter
-import com.example.flashcards.databinding.ActivityEnvironmentsBinding
-import com.example.flashcards.databinding.DialogAddLocationBinding
-import com.example.flashcards.ui.FlashcardViewModel
+import com.example.StudyApp.adapter.LocationAdapter
+import com.example.StudyApp.databinding.ActivityEnvironmentsBinding
+import com.example.StudyApp.databinding.DialogAddLocationBinding
+import com.example.StudyApp.ui.FlashcardViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
