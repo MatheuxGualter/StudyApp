@@ -2,15 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/round_home_24"
         android:title="Home" />
     <item
         android:id="@+id/navigation_decks"
-        android:icon="@drawable/ic_deck"
+        android:icon="@drawable/round_playlist_play_24"
         android:title="Decks" />
     <item
         android:id="@+id/navigation_exercise"
-        android:icon="@drawable/ic_exercise"
+        android:icon="@drawable/round_auto_stories_24"
         android:title="Exercitar" />
     <item
         android:id="@+id/navigation_environments"

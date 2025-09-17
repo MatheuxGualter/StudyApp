@@ -26,6 +26,11 @@ drawable ic_restaurant_location
 drawable ic_school_location
 drawable ic_work_location
 drawable icon_selector
+drawable round_add_24
+drawable round_auto_stories_24
+drawable round_home_24
+drawable round_playlist_play_24
+drawable rounded_brightness_empty_24
 drawable selected_icon_background
 id action_environments
 id action_shuffle

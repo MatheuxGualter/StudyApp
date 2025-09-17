@@ -19,10 +19,11 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:contentDescription="Ícone de localização"
+            android:tint="@color/teal_200"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:src="@drawable/ic_location" />
+            tools:src="@drawable/round_location_on_24" />
 
         <TextView
             android:id="@+id/locationName"
@@ -56,10 +57,11 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Excluir localização"
             android:padding="8dp"
-            android:src="@drawable/ic_delete"
+            android:src="@drawable/round_delete_forever_24"
+            android:tint="@color/purple_700"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

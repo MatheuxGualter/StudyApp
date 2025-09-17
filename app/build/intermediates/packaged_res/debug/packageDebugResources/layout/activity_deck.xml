@@ -16,8 +16,7 @@
         android:id="@+id/emptyView"
         layout="@layout/empty_deck_state"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"/>
+        android:layout_height="match_parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -28,14 +27,15 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="72dp"
         android:contentDescription="@string/add_deck"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        android:tint="#FFFFFF"
+        app:backgroundTint="@color/purple_700"
+        app:srcCompat="@drawable/round_add_24" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="?android:attr/windowBackground"
         app:menu="@menu/bottom_nav_menu" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

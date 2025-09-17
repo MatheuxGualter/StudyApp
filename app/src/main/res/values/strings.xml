@@ -30,7 +30,7 @@
     <string name="flashcard_options">Opções do Flashcard</string>
     <string name="deck_header">Deck: %1$s</string>
     <string name="delete_deck_from_edit">Excluir Deck</string>
-    <string name="empty_deck_title">Nenhum deck encontrado</string>
+    <string name="empty_deck_title">Ops! Nenhum deck encontrado</string>
     <string name="empty_deck_message">Crie seu primeiro deck para começar a estudar!</string>
     <string name="empty_flashcards_title">Nenhum flashcard encontrado</string>
     <string name="empty_flashcards_message">Adicione flashcards a este deck para começar a estudar!</string>
