@@ -1,8 +1,18 @@
+import java.util.Properties
+import java.io.FileInputStream
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("kotlin-parcelize")
+}
+
+// Mova a lógica de carregamento para cá
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localProperties.load(FileInputStream(localPropertiesFile))
 }
 
 android {
@@ -28,6 +38,10 @@ android {
                 )
             }
         }
+
+        // Expor a GOOGLE_API_KEY do local.properties via BuildConfig
+        val googleApiKey = localProperties.getProperty("GOOGLE_API_KEY", "")
+        buildConfigField("String", "GOOGLE_API_KEY", "\"$googleApiKey\"")
     }
 
     buildTypes {
@@ -48,6 +62,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true // Esta linha está correta
     }
 }
 
@@ -79,6 +94,9 @@ dependencies {
     
     // Lottie para animações
     implementation("com.airbnb.android:lottie:6.1.0")
+
+    // Google Generative AI (Gemini)
+    implementation("com.google.ai.client.generativeai:generativeai:0.9.0")
     
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

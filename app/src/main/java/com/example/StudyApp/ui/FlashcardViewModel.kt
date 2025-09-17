@@ -1,6 +1,7 @@
 package com.example.StudyApp.ui
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.StudyApp.data.Flashcard
@@ -9,12 +10,14 @@ import com.example.StudyApp.data.FlashcardRepository
 import com.example.StudyApp.data.UserLocation
 import com.example.StudyApp.data.UserLocationDao
 import kotlinx.coroutines.flow.Flow
+import com.example.StudyApp.data.AIRepository
 import kotlinx.coroutines.launch
 import java.util.Date
 
 class FlashcardViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: FlashcardRepository
     private val userLocationDao: UserLocationDao
+    private val aiRepository = AIRepository()
 
     // Fluxos para diferentes modos de visualização
     val allFlashcardsByReview: Flow<List<Flashcard>>
@@ -63,6 +66,21 @@ class FlashcardViewModel(application: Application) : AndroidViewModel(applicatio
 
     fun deleteAllFlashcardsForDeck(deckId: Long) = viewModelScope.launch {
         repository.deleteAllForDeck(deckId)
+    }
+
+    fun generateFlashcardsFromText(text: String, deckId: Long) {
+        viewModelScope.launch {
+            try {
+                Log.d("AI_ASSISTANT", "ViewModel: Iniciando a geração de flashcards.")
+                val generated = aiRepository.generateFlashcardsFromText(text, deckId)
+                Log.d("AI_ASSISTANT", "ViewModel: ${generated.size} flashcards gerados com sucesso!")
+                generated.forEach { repository.insert(it) }
+            } catch (e: Exception) {
+                // AQUI ESTÁ A MUDANÇA IMPORTANTE!
+                // Vamos registrar o erro no Logcat para ver o que está acontecendo.
+                Log.e("AI_ASSISTANT", "ViewModel: Erro ao gerar flashcards.", e)
+            }
+        }
     }
 
     fun calculateNextReview(flashcard: Flashcard, quality: Int): Flashcard {
