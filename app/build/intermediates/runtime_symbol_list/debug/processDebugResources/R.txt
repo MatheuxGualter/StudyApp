@@ -3129,9 +3129,12 @@ int drawable notification_tile_bg 0x7f070105
 int drawable notify_panel_notification_icon_bg 0x7f070106
 int drawable round_add_24 0x7f07010b
 int drawable round_auto_stories_24 0x7f07010e
+int drawable round_delete_forever_24 0x7f070110
 int drawable round_home_24 0x7f07010c
+int drawable round_location_on_24 0x7f070111
 int drawable round_playlist_play_24 0x7f07010d
 int drawable rounded_brightness_empty_24 0x7f07010f
+int drawable rounded_close_24 0x7f070112
 int drawable selected_icon_background 0x7f070107
 int drawable test_level_drawable 0x7f070108
 int drawable tooltip_frame_dark 0x7f070109

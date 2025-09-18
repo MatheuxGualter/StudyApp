@@ -24,6 +24,10 @@
         "source": "C:\\Users\\joaog\\.gradle\\daemon\\8.10.2\\com.example.StudyApp.app-main-44:\\layout\\empty_deck_state.xml"
     },
     {
+        "merged": "com.example.StudyApp.app-mergeDebugResources-41:/layout/activity_environments.xml",
+        "source": "com.example.StudyApp.app-main-44:/layout/activity_environments.xml"
+    },
+    {
         "merged": "C:\\Users\\joaog\\.gradle\\daemon\\8.10.2\\com.example.StudyApp.app-mergeDebugResources-41:\\layout\\item_deck.xml",
         "source": "C:\\Users\\joaog\\.gradle\\daemon\\8.10.2\\com.example.StudyApp.app-main-44:\\layout\\item_deck.xml"
     },
@@ -40,10 +44,6 @@
         "source": "C:\\Users\\joaog\\.gradle\\daemon\\8.10.2\\com.example.StudyApp.app-main-44:\\layout\\activity_deck.xml"
     },
     {
-        "merged": "com.example.StudyApp.app-mergeDebugResources-41:/layout/empty_deck_state.xml",
-        "source": "com.example.StudyApp.app-main-44:/layout/empty_deck_state.xml"
-    },
-    {
         "merged": "C:\\Users\\joaog\\.gradle\\daemon\\8.10.2\\com.example.StudyApp.app-mergeDebugResources-41:\\layout\\activity_exercise.xml",
         "source": "C:\\Users\\joaog\\.gradle\\daemon\\8.10.2\\com.example.StudyApp.app-main-44:\\layout\\activity_exercise.xml"
     },
@@ -54,6 +54,14 @@
     {
         "merged": "C:\\Users\\joaog\\.gradle\\daemon\\8.10.2\\com.example.StudyApp.app-mergeDebugResources-41:\\layout\\item_location.xml",
         "source": "C:\\Users\\joaog\\.gradle\\daemon\\8.10.2\\com.example.StudyApp.app-main-44:\\layout\\item_location.xml"
+    },
+    {
+        "merged": "com.example.StudyApp.app-mergeDebugResources-41:/layout/item_location.xml",
+        "source": "com.example.StudyApp.app-main-44:/layout/item_location.xml"
+    },
+    {
+        "merged": "com.example.StudyApp.app-mergeDebugResources-41:/layout/empty_flashcards_state.xml",
+        "source": "com.example.StudyApp.app-main-44:/layout/empty_flashcards_state.xml"
     },
     {
         "merged": "C:\\Users\\joaog\\.gradle\\daemon\\8.10.2\\com.example.StudyApp.app-mergeDebugResources-41:\\layout\\dialog_add_location.xml",
