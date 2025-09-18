@@ -21,7 +21,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.flashcards"
+        applicationId = "com.example.StudyApp"
         minSdk = 23
         targetSdk = 34
         versionCode = 1
