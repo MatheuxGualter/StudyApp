@@ -1,5 +1,6 @@
 package com.example.StudyApp.data
 
+import android.util.Log
 import com.example.StudyApp.BuildConfig
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.gson.Gson
@@ -93,33 +94,28 @@ class AIRepository {
         return text.substring(start, end + 1)
     }
 
-    suspend fun verifyAnswer(question: String, correctAnswer: String, userAnswer: String): Boolean = withContext(Dispatchers.IO) {
+    suspend fun verifyAnswer(question: String, correctAnswer: String, userAnswer: String): Boolean {
         val prompt = """
-            Você é um verificador semântico de respostas. Compare a resposta do usuário com a resposta correta com base no significado, não na forma literal.
-            Instruções:
-            - Considere a pergunta para contexto.
-            - Ignore erros de digitação, variações gramaticais e sinônimos.
-            - Foque no significado semântico e na exatidão factual.
-            - Responda APENAS com a palavra "true" ou "false" (tudo minúsculo), sem qualquer texto adicional, explicação, pontuação ou formatação.
+        Você é um tutor assistente de um aplicativo de flashcards. Sua tarefa é avaliar se a resposta de um estudante está correta, focando no significado principal e não na exatidão literal.
 
-            Pergunta:
-            ${'$'}{question.trim()}
+        - A Pergunta foi: "$question"
+        - A Resposta Correta esperada é: "$correctAnswer"
+        - A Resposta do Estudante foi: "$userAnswer"
 
-            Resposta correta (gabarito):
-            ${'$'}{correctAnswer.trim()}
+        Avalie a "Resposta do Estudante". Ela contém a informação essencial da "Resposta Correta"? Seja flexível com sinônimos, ordem das palavras e pequenas omissões que não alterem o sentido principal. Por exemplo, se a resposta correta for "Lisboa", e o usuário responder "a capital de Portugal", a resposta está correta.
 
-            Resposta do usuário:
-            ${'$'}{userAnswer.trim()}
-        """.trimIndent()
+        Responda apenas com a palavra "true" se a resposta do estudante for semanticamente correta, ou "false" caso contrário. Não explique sua decisão.
+    """.trimIndent()
 
-        val responseText = try {
+        try {
             val response = model.generateContent(prompt)
-            response.text?.trim()?.lowercase() ?: ""
-        } catch (_: Exception) {
-            ""
+            val result = response.text?.trim().equals("true", ignoreCase = true)
+            Log.d("AI_ASSISTANT", "Verificação Semântica: Resposta da IA foi '${response.text?.trim()}', resultado final: $result")
+            return result
+        } catch (e: Exception) {
+            Log.e("AI_ASSISTANT", "Erro na verificação de resposta.", e)
+            return false // Em caso de erro, assume-se que está errado.
         }
-
-        return@withContext responseText == "true"
     }
 }
 

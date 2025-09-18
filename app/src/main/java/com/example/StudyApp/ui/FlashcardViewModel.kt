@@ -141,7 +141,12 @@ class FlashcardViewModel(application: Application) : AndroidViewModel(applicatio
                 aiRepository.verifyAnswer(question = question, correctAnswer = correct, userAnswer = userAnswer)
             } catch (_: Exception) { false }
             _verificationStatus.value = result
+
+
         }
+    }
+    fun resetVerificationStatus() {
+        _verificationStatus.value = null
     }
 
     fun logStudyEvent(deckId: Long, flashcardId: Long, responseTime: Long, isCorrect: Boolean) {

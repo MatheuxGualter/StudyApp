@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class ExerciseActivity : AppCompatActivity() {
+    private var currentFlashcardForVerification: Flashcard? = null
     private lateinit var binding: ActivityExerciseBinding
     private lateinit var viewModel: FlashcardViewModel
     private var currentDeckId: Long = -1
@@ -39,7 +40,23 @@ class ExerciseActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
         viewModel = ViewModelProvider(this)[FlashcardViewModel::class.java]
+        setupObservers()
         setupExercise()
+    }
+    private fun setupObservers() {
+        lifecycleScope.launch {
+            viewModel.verificationStatus.collect { isCorrect ->
+                // Apenas reaja se o valor não for nulo (um novo resultado chegou)
+                if (isCorrect != null) {
+                    hideLoadingDialog()
+                    currentFlashcardForVerification?.let { flashcard ->
+                        processResult(flashcard, isCorrect)
+                    }
+                    // Resetamos o estado para a próxima verificação
+                    viewModel.resetVerificationStatus()
+                }
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -189,28 +206,18 @@ class ExerciseActivity : AppCompatActivity() {
             FlashcardType.FRONT_BACK -> userAnswer.equals(flashcard.back, ignoreCase = true)
             FlashcardType.CLOZE -> userAnswer.equals(flashcard.clozeAnswer, ignoreCase = true)
             FlashcardType.TEXT_INPUT -> userAnswer.equals(flashcard.back, ignoreCase = true)
-            FlashcardType.MULTIPLE_CHOICE -> userAnswer.toInt() == flashcard.correctOptionIndex
+            FlashcardType.MULTIPLE_CHOICE -> userAnswer.toIntOrNull() == flashcard.correctOptionIndex
         }
 
         if (exactMatch) {
             processResult(flashcard, isCorrect = true)
-            return
-        }
-
-        if (flashcard.type == FlashcardType.FRONT_BACK || flashcard.type == FlashcardType.TEXT_INPUT) {
+        } else if (flashcard.type == FlashcardType.FRONT_BACK || flashcard.type == FlashcardType.TEXT_INPUT) {
+            // Se errou, apenas peça a verificação da IA. O observador em onCreate vai tratar do resultado.
+            currentFlashcardForVerification = flashcard
             showLoadingDialog()
-            lifecycleScope.launch {
-                viewModel.verifyAnswerWithAI(flashcard, userAnswer)
-                viewModel.verificationStatus.collectLatest { aiResult ->
-                    if (aiResult != null) {
-                        hideLoadingDialog()
-                        processResult(flashcard, isCorrect = aiResult)
-                        // reset for next use
-                        return@collectLatest
-                    }
-                }
-            }
+            viewModel.verifyAnswerWithAI(flashcard, userAnswer)
         } else {
+            // Se errou e não é um tipo de texto (ex: múltipla escolha), o resultado é final.
             processResult(flashcard, isCorrect = false)
         }
     }
