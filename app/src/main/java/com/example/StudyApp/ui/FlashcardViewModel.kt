@@ -115,7 +115,7 @@ class FlashcardViewModel(application: Application) : AndroidViewModel(applicatio
                 Log.d("AI_ASSISTANT", "ViewModel: Iniciando a geração de flashcards.")
                 val generated = aiRepository.generateFlashcardsFromText(text, deckId)
                 Log.d("AI_ASSISTANT", "ViewModel: ${generated.size} flashcards gerados com sucesso!")
-                generated.forEach { repository.insert(it) }
+                generated.forEach { insert(it) }
             } catch (e: Exception) {
                 // AQUI ESTÁ A MUDANÇA IMPORTANTE!
                 // Vamos registrar o erro no Logcat para ver o que está acontecendo.

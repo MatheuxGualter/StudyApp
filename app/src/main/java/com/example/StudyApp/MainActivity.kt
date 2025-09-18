@@ -50,6 +50,9 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
         viewModel = ViewModelProvider(this)[FlashcardViewModel::class.java]
+        if (currentDeckId != -1L) {
+            viewModel.startSyncForDeck(currentDeckId)
+        }
         setupRecyclerView()
         setupFab()
         setupBottomNavigation()
