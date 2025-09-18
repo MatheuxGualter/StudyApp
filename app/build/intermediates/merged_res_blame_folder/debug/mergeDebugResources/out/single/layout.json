@@ -1,78 +1,86 @@
 [
     {
-        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-41:/layout/activity_main.xml",
-        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-44:/layout/activity_main.xml"
+        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-49:/layout/dialog_add_location.xml",
+        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-52:/layout/dialog_add_location.xml"
     },
     {
-        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-41:/layout/activity_analytics.xml",
-        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-44:/layout/activity_analytics.xml"
+        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-49:/layout/item_location.xml",
+        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-52:/layout/item_location.xml"
     },
     {
-        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-41:/layout/activity_deck.xml",
-        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-44:/layout/activity_deck.xml"
+        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-49:/layout/item_analytics_event.xml",
+        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-52:/layout/item_analytics_event.xml"
     },
     {
-        "merged": "com.example.StudyApp.app-mergeDebugResources-41:/layout/activity_analytics.xml",
-        "source": "com.example.StudyApp.app-main-44:/layout/activity_analytics.xml"
+        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-49:/layout/activity_exercise_selection.xml",
+        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-52:/layout/activity_exercise_selection.xml"
     },
     {
-        "merged": "com.example.StudyApp.app-mergeDebugResources-41:/layout/item_analytics_event.xml",
-        "source": "com.example.StudyApp.app-main-44:/layout/item_analytics_event.xml"
+        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-49:/layout/activity_deck.xml",
+        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-52:/layout/activity_deck.xml"
     },
     {
-        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-41:/layout/dialog_add_deck.xml",
-        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-44:/layout/dialog_add_deck.xml"
+        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-49:/layout/activity_auth.xml",
+        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-52:/layout/activity_auth.xml"
     },
     {
-        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-41:/layout/item_deck.xml",
-        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-44:/layout/item_deck.xml"
+        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-49:/layout/item_deck.xml",
+        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-52:/layout/item_deck.xml"
     },
     {
-        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-41:/layout/item_flashcard.xml",
-        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-44:/layout/item_flashcard.xml"
+        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-49:/layout/dialog_add_flashcard.xml",
+        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-52:/layout/dialog_add_flashcard.xml"
     },
     {
-        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-41:/layout/activity_exercise.xml",
-        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-44:/layout/activity_exercise.xml"
+        "merged": "com.example.StudyApp.app-mergeDebugResources-49:/layout/activity_analytics.xml",
+        "source": "com.example.StudyApp.app-main-52:/layout/activity_analytics.xml"
     },
     {
-        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-41:/layout/item_location.xml",
-        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-44:/layout/item_location.xml"
+        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-49:/layout/activity_environments.xml",
+        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-52:/layout/activity_environments.xml"
     },
     {
-        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-41:/layout/empty_deck_state.xml",
-        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-44:/layout/empty_deck_state.xml"
+        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-49:/layout/dialog_add_deck.xml",
+        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-52:/layout/dialog_add_deck.xml"
     },
     {
-        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-41:/layout/empty_flashcards_state.xml",
-        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-44:/layout/empty_flashcards_state.xml"
+        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-49:/layout/item_flashcard.xml",
+        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-52:/layout/item_flashcard.xml"
     },
     {
-        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-41:/layout/activity_exercise_selection.xml",
-        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-44:/layout/activity_exercise_selection.xml"
+        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-49:/layout/empty_flashcards_state.xml",
+        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-52:/layout/empty_flashcards_state.xml"
     },
     {
-        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-41:/layout/item_analytics_event.xml",
-        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-44:/layout/item_analytics_event.xml"
+        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-49:/layout/activity_main.xml",
+        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-52:/layout/activity_main.xml"
     },
     {
-        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-41:/layout/dialog_add_location.xml",
-        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-44:/layout/dialog_add_location.xml"
+        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-49:/layout/activity_analytics.xml",
+        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-52:/layout/activity_analytics.xml"
     },
     {
-        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-41:/layout/dialog_generate_ai.xml",
-        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-44:/layout/dialog_generate_ai.xml"
+        "merged": "com.example.StudyApp.app-mergeDebugResources-49:/layout/activity_auth.xml",
+        "source": "com.example.StudyApp.app-main-52:/layout/activity_auth.xml"
     },
     {
-        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-41:/layout/activity_environments.xml",
-        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-44:/layout/activity_environments.xml"
+        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-49:/layout/empty_deck_state.xml",
+        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-52:/layout/empty_deck_state.xml"
     },
     {
-        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-41:/layout/dialog_add_flashcard.xml",
-        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-44:/layout/dialog_add_flashcard.xml"
+        "merged": "com.example.StudyApp.app-mergeDebugResources-49:/layout/item_analytics_event.xml",
+        "source": "com.example.StudyApp.app-main-52:/layout/item_analytics_event.xml"
     },
     {
-        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-41:/layout/activity_home.xml",
-        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-44:/layout/activity_home.xml"
+        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-49:/layout/dialog_generate_ai.xml",
+        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-52:/layout/dialog_generate_ai.xml"
+    },
+    {
+        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-49:/layout/activity_exercise.xml",
+        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-52:/layout/activity_exercise.xml"
+    },
+    {
+        "merged": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-mergeDebugResources-49:/layout/activity_home.xml",
+        "source": "/home/pedro/.gradle/daemon/8.10.2/com.example.StudyApp.app-main-52:/layout/activity_home.xml"
     }
 ]

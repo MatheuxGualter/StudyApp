@@ -26,8 +26,8 @@ class FlashcardRepository(private val dao: FlashcardDao) {
         return dao.getDueFlashcardsForDeck(deckId, Date())
     }
 
-    suspend fun insert(flashcard: Flashcard) {
-        dao.insert(flashcard)
+    suspend fun insert(flashcard: Flashcard) : Long {
+        return dao.insert(flashcard)
     }
 
     suspend fun update(flashcard: Flashcard) {

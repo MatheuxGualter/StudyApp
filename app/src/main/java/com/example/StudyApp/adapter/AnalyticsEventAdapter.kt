@@ -58,3 +58,7 @@ class AnalyticsEventAdapter : RecyclerView.Adapter<AnalyticsEventAdapter.EventVi
     }
 }
 
+
+
+
+

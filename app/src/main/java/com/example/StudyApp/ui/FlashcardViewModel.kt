@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.StudyApp.data.Flashcard
 import com.example.StudyApp.data.FlashcardDatabase
 import com.example.StudyApp.data.FlashcardRepository
+import com.example.StudyApp.data.FirestoreRepository
 import com.example.StudyApp.data.UserLocation
 import com.example.StudyApp.data.UserLocationDao
 import kotlinx.coroutines.flow.Flow
@@ -24,6 +25,7 @@ class FlashcardViewModel(application: Application) : AndroidViewModel(applicatio
     private val userLocationDao: UserLocationDao
     private val studySessionDao: StudySessionDao
     private val aiRepository = AIRepository()
+    private val cloud: FirestoreRepository = FirestoreRepository()
 
     // Fluxos para diferentes modos de visualização
     val allFlashcardsByReview: Flow<List<Flashcard>>
@@ -59,15 +61,18 @@ class FlashcardViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     fun insert(flashcard: Flashcard) = viewModelScope.launch {
-        repository.insert(flashcard)
+        val newId = repository.insert(flashcard)
+        runCatching { cloud.saveFlashcard(flashcard.deckId, flashcard.copy(id = newId)) }
     }
 
     fun update(flashcard: Flashcard) = viewModelScope.launch {
         repository.update(flashcard)
+        runCatching { cloud.saveFlashcard(flashcard.deckId, flashcard) }
     }
 
     fun delete(flashcard: Flashcard) = viewModelScope.launch {
         repository.delete(flashcard)
+        runCatching { cloud.deleteFlashcard(flashcard.deckId, flashcard) }
     }
 
     suspend fun getFlashcardById(id: Long): Flashcard? {
@@ -76,6 +81,32 @@ class FlashcardViewModel(application: Application) : AndroidViewModel(applicatio
 
     fun deleteAllFlashcardsForDeck(deckId: Long) = viewModelScope.launch {
         repository.deleteAllForDeck(deckId)
+    }
+
+    // Inicia sincronização contínua dos flashcards do deck com a nuvem
+    fun startSyncForDeck(deckId: Long) {
+        viewModelScope.launch {
+            try {
+                cloud.getFlashcards(deckId).collect { remoteCards ->
+                    // Estratégia simples: inserir/atualizar localmente
+                    remoteCards.forEach { card ->
+                        repository.insert(card)
+                    }
+                }
+            } catch (_: Exception) { }
+        }
+    }
+
+    fun syncFlashcardsForDeck(deckId: Long) {
+        viewModelScope.launch {
+            try {
+                cloud.getFlashcards(deckId).collect { remoteCards ->
+                    remoteCards.forEach { card ->
+                        repository.insert(card)
+                    }
+                }
+            } catch (_: Exception) { }
+        }
     }
 
     fun generateFlashcardsFromText(text: String, deckId: Long) {

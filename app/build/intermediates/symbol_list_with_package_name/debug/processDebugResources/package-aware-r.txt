@@ -1388,6 +1388,10 @@ color bright_foreground_inverse_material_dark
 color bright_foreground_inverse_material_light
 color bright_foreground_material_dark
 color bright_foreground_material_light
+color browser_actions_bg_grey
+color browser_actions_divider_color
+color browser_actions_text_color
+color browser_actions_title_color
 color button_material_dark
 color button_material_light
 color call_notification_answer_color
@@ -2194,6 +2198,8 @@ dimen abc_text_size_subtitle_material_toolbar
 dimen abc_text_size_title_material
 dimen abc_text_size_title_material_toolbar
 dimen appcompat_dialog_background_inset
+dimen browser_actions_context_menu_max_width
+dimen browser_actions_context_menu_min_padding
 dimen cardview_compat_inset_shadow
 dimen cardview_default_elevation
 dimen cardview_default_radius
@@ -3052,7 +3058,10 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable ic_other_sign_in
 drawable ic_park_location
+drawable ic_passkey
+drawable ic_password
 drawable ic_restaurant_location
 drawable ic_school_location
 drawable ic_search_black_24
@@ -3201,6 +3210,7 @@ id action_divider
 id action_environments
 id action_generate_ai
 id action_image
+id action_logout
 id action_menu_divider
 id action_menu_presenter
 id action_mode_bar
@@ -3249,6 +3259,13 @@ id bounce
 id bounceBoth
 id bounceEnd
 id bounceStart
+id browser_actions_header_text
+id browser_actions_menu_item_icon
+id browser_actions_menu_item_text
+id browser_actions_menu_items
+id browser_actions_menu_view
+id btnLogin
+id btnRegister
 id buttonPanel
 id cache_measures
 id callMeasure
@@ -3349,7 +3366,9 @@ id endToStart
 id enterAlways
 id enterAlwaysCollapsed
 id etBaseText
+id etEmail
 id etLocationName
+id etPassword
 id exerciseContainer
 id exitUntilCollapsed
 id expand_activities_button
@@ -3680,7 +3699,9 @@ id textinput_placeholder
 id textinput_prefix_text
 id textinput_suffix_text
 id tilBaseText
+id tilEmail
 id tilLocationName
+id tilPassword
 id time
 id timeText
 id timestampText
@@ -3849,12 +3870,15 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_analytics
+layout activity_auth
 layout activity_deck
 layout activity_environments
 layout activity_exercise
 layout activity_exercise_selection
 layout activity_home
 layout activity_main
+layout browser_actions_context_menu_page
+layout browser_actions_context_menu_row
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
@@ -3946,9 +3970,11 @@ layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
 menu bottom_nav_menu
 menu exercise_menu
+menu home_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description
+raw firebase_common_keep
 raw flashcards_animation
 string abc_action_bar_home_description
 string abc_action_bar_up_description
@@ -3981,6 +4007,8 @@ string add_deck
 string add_flashcard
 string add_location
 string add_new_location
+string android_credentials_TYPE_PASSWORD_CREDENTIAL
+string androidx_credentials_TYPE_PUBLIC_KEY_CREDENTIAL
 string androidx_startup
 string app_name
 string appbar_scrolling_view_behavior
@@ -4022,6 +4050,7 @@ string common_google_play_services_wear_update_text
 string common_open_on_phone
 string common_signin_button_text
 string common_signin_button_text_long
+string copy_toast_msg
 string deck_header
 string deck_name
 string deck_options
@@ -4046,8 +4075,16 @@ string error_saving_location
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
+string fallback_menu_item_copy_link
+string fallback_menu_item_open_in_browser
+string fallback_menu_item_share_link
 string flashcard_options
 string front_side
+string gcm_defaultSenderId
+string google_api_key
+string google_app_id
+string google_crash_reporting_api_key
+string google_storage_bucket
 string hide_bottom_view_on_scroll_behavior
 string icon_content_description
 string item_view_role_description
@@ -4165,6 +4202,7 @@ string path_password_eye
 string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
+string project_id
 string quality_1
 string quality_2
 string quality_3
@@ -4734,6 +4772,7 @@ style Theme_Design_Light_BottomSheetDialog
 style Theme_Design_Light_NoActionBar
 style Theme_Design_NoActionBar
 style Theme_FlashCards
+style Theme_Hidden
 style Theme_Material3_Dark
 style Theme_Material3_Dark_BottomSheetDialog
 style Theme_Material3_Dark_Dialog
@@ -5454,3 +5493,4 @@ styleable ViewPager2 android_orientation
 styleable ViewStubCompat android_id android_layout android_inflatedId
 styleable ViewTransition android_id SharedValue SharedValueId clearsTag duration ifTagNotSet ifTagSet motionInterpolator motionTarget onStateTransition pathMotionArc setsTag transitionDisable upDuration viewTransitionMode
 styleable include constraintSet
+xml image_share_filepaths

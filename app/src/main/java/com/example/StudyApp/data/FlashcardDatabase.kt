@@ -31,5 +31,9 @@ abstract class FlashcardDatabase : RoomDatabase() {
                 instance
             }
         }
+
+        suspend fun clearDatabase(context: Context) {
+            getDatabase(context).clearAllTables()
+        }
     }
 }

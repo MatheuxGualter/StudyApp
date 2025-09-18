@@ -69,8 +69,7 @@ public final class StudySessionDao_Impl implements StudySessionDao {
   }
 
   @Override
-  public Object insert(final StudySessionEvent event,
-      final Continuation<? super Unit> $completion) {
+  public Object insert(final StudySessionEvent event, final Continuation<? super Unit> arg1) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -84,7 +83,7 @@ public final class StudySessionDao_Impl implements StudySessionDao {
           __db.endTransaction();
         }
       }
-    }, $completion);
+    }, arg1);
   }
 
   @Override
@@ -216,7 +215,7 @@ public final class StudySessionDao_Impl implements StudySessionDao {
   }
 
   @Override
-  public Object getTotalCorrectAnswers(final Continuation<? super Integer> $completion) {
+  public Object getTotalCorrectAnswers(final Continuation<? super Integer> arg0) {
     final String _sql = "SELECT COUNT(*) FROM study_session_events WHERE isCorrect = 1";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     final CancellationSignal _cancellationSignal = DBUtil.createCancellationSignal();
@@ -244,11 +243,11 @@ public final class StudySessionDao_Impl implements StudySessionDao {
           _statement.release();
         }
       }
-    }, $completion);
+    }, arg0);
   }
 
   @Override
-  public Object getTotalWrongAnswers(final Continuation<? super Integer> $completion) {
+  public Object getTotalWrongAnswers(final Continuation<? super Integer> arg0) {
     final String _sql = "SELECT COUNT(*) FROM study_session_events WHERE isCorrect = 0";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     final CancellationSignal _cancellationSignal = DBUtil.createCancellationSignal();
@@ -276,11 +275,11 @@ public final class StudySessionDao_Impl implements StudySessionDao {
           _statement.release();
         }
       }
-    }, $completion);
+    }, arg0);
   }
 
   @Override
-  public Object getAverageResponseTimeForCorrect(final Continuation<? super Double> $completion) {
+  public Object getAverageResponseTimeForCorrect(final Continuation<? super Double> arg0) {
     final String _sql = "SELECT AVG(responseTimeMillis) FROM study_session_events WHERE isCorrect = 1";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     final CancellationSignal _cancellationSignal = DBUtil.createCancellationSignal();
@@ -308,11 +307,11 @@ public final class StudySessionDao_Impl implements StudySessionDao {
           _statement.release();
         }
       }
-    }, $completion);
+    }, arg0);
   }
 
   @Override
-  public Object getTotalDecksStudied(final Continuation<? super Integer> $completion) {
+  public Object getTotalDecksStudied(final Continuation<? super Integer> arg0) {
     final String _sql = "SELECT COUNT(DISTINCT deckId) FROM study_session_events";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     final CancellationSignal _cancellationSignal = DBUtil.createCancellationSignal();
@@ -340,11 +339,11 @@ public final class StudySessionDao_Impl implements StudySessionDao {
           _statement.release();
         }
       }
-    }, $completion);
+    }, arg0);
   }
 
   @Override
-  public Object getTotalFlashcardsStudied(final Continuation<? super Integer> $completion) {
+  public Object getTotalFlashcardsStudied(final Continuation<? super Integer> arg0) {
     final String _sql = "SELECT COUNT(DISTINCT flashcardId) FROM study_session_events";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     final CancellationSignal _cancellationSignal = DBUtil.createCancellationSignal();
@@ -372,11 +371,11 @@ public final class StudySessionDao_Impl implements StudySessionDao {
           _statement.release();
         }
       }
-    }, $completion);
+    }, arg0);
   }
 
   @Override
-  public Object getTotalAnswers(final Continuation<? super Integer> $completion) {
+  public Object getTotalAnswers(final Continuation<? super Integer> arg0) {
     final String _sql = "SELECT COUNT(*) FROM study_session_events";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     final CancellationSignal _cancellationSignal = DBUtil.createCancellationSignal();
@@ -404,7 +403,7 @@ public final class StudySessionDao_Impl implements StudySessionDao {
           _statement.release();
         }
       }
-    }, $completion);
+    }, arg0);
   }
 
   @Override

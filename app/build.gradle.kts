@@ -6,6 +6,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("kotlin-parcelize")
+    id("com.google.gms.google-services")
 }
 
 // Mova a lógica de carregamento para cá
@@ -21,7 +22,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.flashcards"
-        minSdk = 21
+        minSdk = 23
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -103,4 +104,14 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
+    // Firebase BoM and libraries
+    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-firestore")
+
+    implementation("androidx.activity:activity-ktx:1.9.0")
+
+    // Kotlin coroutines support for Play Services Task.await
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.3")
 }

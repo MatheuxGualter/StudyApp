@@ -34,6 +34,7 @@ id accuracyText
 id action_analytics
 id action_environments
 id action_generate_ai
+id action_logout
 id action_shuffle
 id allDecksButton
 id animationView
@@ -43,6 +44,8 @@ id backEditText
 id backText
 id bottomNavigation
 id bottom_navigation
+id btnLogin
+id btnRegister
 id cardCountText
 id clozeAnswerEditText
 id clozeAnswerInput
@@ -59,7 +62,9 @@ id editButton
 id emptyStateCard
 id emptyView
 id etBaseText
+id etEmail
 id etLocationName
+id etPassword
 id exerciseContainer
 id fab
 id fabAddLocation
@@ -105,7 +110,9 @@ id textInputAnswerEditText
 id textInputLayout
 id textInputQuestionEditText
 id tilBaseText
+id tilEmail
 id tilLocationName
+id tilPassword
 id timeText
 id timestampText
 id totalCorrectText
@@ -119,6 +126,7 @@ id tvSelectIcon
 id welcomeSubtitle
 id welcomeTitle
 layout activity_analytics
+layout activity_auth
 layout activity_deck
 layout activity_environments
 layout activity_exercise
@@ -137,6 +145,7 @@ layout item_flashcard
 layout item_location
 menu bottom_nav_menu
 menu exercise_menu
+menu home_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
 raw flashcards_animation
@@ -169,6 +178,11 @@ string error_location_permission
 string error_saving_location
 string flashcard_options
 string front_side
+string gcm_defaultSenderId
+string google_api_key
+string google_app_id
+string google_crash_reporting_api_key
+string google_storage_bucket
 string location_coordinates
 string location_deleted
 string location_name
@@ -178,6 +192,7 @@ string no_cards
 string no_decks
 string no_locations
 string open
+string project_id
 string quality_1
 string quality_2
 string quality_3

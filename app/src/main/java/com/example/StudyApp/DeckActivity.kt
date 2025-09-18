@@ -32,6 +32,7 @@ class DeckActivity : AppCompatActivity() {
 
         deckViewModel = ViewModelProvider(this)[DeckViewModel::class.java]
         flashcardViewModel = ViewModelProvider(this)[FlashcardViewModel::class.java]
+        deckViewModel.syncDecksFromFirestore()
 
         setupRecyclerView()
         setupFab()
