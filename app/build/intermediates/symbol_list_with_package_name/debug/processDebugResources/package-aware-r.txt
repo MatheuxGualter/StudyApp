@@ -1456,6 +1456,7 @@ color foreground_material_light
 color highlighted_text_material_dark
 color highlighted_text_material_light
 color ic_launcher_background
+color light_gray
 color m3_appbar_overlay_color
 color m3_assist_chip_icon_tint_color
 color m3_assist_chip_stroke_color
@@ -2082,6 +2083,7 @@ color mtrl_textinput_focused_box_stroke_color
 color mtrl_textinput_hovered_box_stroke_color
 color notification_action_color_filter
 color notification_icon_bg_color
+color primary_color
 color primary_dark_material_dark
 color primary_dark_material_light
 color primary_material_dark
@@ -3181,9 +3183,11 @@ id accessibility_custom_action_6
 id accessibility_custom_action_7
 id accessibility_custom_action_8
 id accessibility_custom_action_9
+id accuracyText
 id actionDown
 id actionDownUp
 id actionUp
+id action_analytics
 id action_bar
 id action_bar_activity_content
 id action_bar_container
@@ -3229,6 +3233,7 @@ id autoComplete
 id autoCompleteToEnd
 id autoCompleteToStart
 id automatic
+id avgResponseTimeText
 id backEditText
 id backText
 id barrier
@@ -3336,6 +3341,7 @@ id edit_query
 id edit_text_id
 id elastic
 id embed
+id emptyStateCard
 id emptyView
 id enabled
 id end
@@ -3380,6 +3386,7 @@ id group_divider
 id grouping
 id groups
 id hardware
+id headerCard
 id header_title
 id hide_ime_id
 id hideable
@@ -3556,10 +3563,13 @@ id rbIconPark
 id rbIconRestaurant
 id rbIconSchool
 id rbIconWork
+id recentEventsRecyclerView
 id rectangles
 id recyclerview
 id report_drawn
 id restart
+id resultIcon
+id resultText
 id reverse
 id reverseSawtooth
 id rgIconSelection
@@ -3672,12 +3682,18 @@ id textinput_suffix_text
 id tilBaseText
 id tilLocationName
 id time
+id timeText
+id timestampText
 id title
 id titleDividerNoCustom
 id title_template
 id toggle
 id top
 id topPanel
+id totalCorrectText
+id totalDecksText
+id totalFlashcardsText
+id totalWrongText
 id touch_outside
 id transitionToEnd
 id transitionToStart
@@ -3832,6 +3848,7 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_analytics
 layout activity_deck
 layout activity_environments
 layout activity_exercise
@@ -3862,6 +3879,7 @@ layout empty_deck_state
 layout empty_flashcards_state
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
+layout item_analytics_event
 layout item_deck
 layout item_flashcard
 layout item_location

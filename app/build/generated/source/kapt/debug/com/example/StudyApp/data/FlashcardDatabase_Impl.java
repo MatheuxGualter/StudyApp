@@ -33,18 +33,21 @@ public final class FlashcardDatabase_Impl extends FlashcardDatabase {
 
   private volatile UserLocationDao _userLocationDao;
 
+  private volatile StudySessionDao _studySessionDao;
+
   @Override
   @NonNull
   protected SupportSQLiteOpenHelper createOpenHelper(@NonNull final DatabaseConfiguration config) {
-    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(5) {
+    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(6) {
       @Override
       public void createAllTables(@NonNull final SupportSQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS `decks` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `theme` TEXT NOT NULL, `createdAt` INTEGER NOT NULL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS `flashcards` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `deckId` INTEGER NOT NULL, `type` TEXT NOT NULL, `front` TEXT NOT NULL, `back` TEXT NOT NULL, `clozeText` TEXT, `clozeAnswer` TEXT, `options` TEXT, `correctOptionIndex` INTEGER, `lastReviewed` INTEGER, `nextReviewDate` INTEGER, `easeFactor` REAL NOT NULL, `interval` INTEGER NOT NULL, `repetitions` INTEGER NOT NULL, `createdAt` INTEGER NOT NULL, FOREIGN KEY(`deckId`) REFERENCES `decks`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )");
         db.execSQL("CREATE INDEX IF NOT EXISTS `index_flashcards_deckId` ON `flashcards` (`deckId`)");
         db.execSQL("CREATE TABLE IF NOT EXISTS `user_location` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `iconName` TEXT NOT NULL, `latitude` REAL NOT NULL, `longitude` REAL NOT NULL, `timestamp` INTEGER NOT NULL)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `study_session_events` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `timestamp` INTEGER NOT NULL, `deckId` INTEGER NOT NULL, `flashcardId` INTEGER NOT NULL, `responseTimeMillis` INTEGER NOT NULL, `isCorrect` INTEGER NOT NULL, `latitude` REAL, `longitude` REAL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a6b6b0d0358b2f9e1fa64b6debc9a515')");
+        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '7d60e23949fefd2f4f0203190b67301a')");
       }
 
       @Override
@@ -52,6 +55,7 @@ public final class FlashcardDatabase_Impl extends FlashcardDatabase {
         db.execSQL("DROP TABLE IF EXISTS `decks`");
         db.execSQL("DROP TABLE IF EXISTS `flashcards`");
         db.execSQL("DROP TABLE IF EXISTS `user_location`");
+        db.execSQL("DROP TABLE IF EXISTS `study_session_events`");
         final List<? extends RoomDatabase.Callback> _callbacks = mCallbacks;
         if (_callbacks != null) {
           for (RoomDatabase.Callback _callback : _callbacks) {
@@ -153,9 +157,27 @@ public final class FlashcardDatabase_Impl extends FlashcardDatabase {
                   + " Expected:\n" + _infoUserLocation + "\n"
                   + " Found:\n" + _existingUserLocation);
         }
+        final HashMap<String, TableInfo.Column> _columnsStudySessionEvents = new HashMap<String, TableInfo.Column>(8);
+        _columnsStudySessionEvents.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsStudySessionEvents.put("timestamp", new TableInfo.Column("timestamp", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsStudySessionEvents.put("deckId", new TableInfo.Column("deckId", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsStudySessionEvents.put("flashcardId", new TableInfo.Column("flashcardId", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsStudySessionEvents.put("responseTimeMillis", new TableInfo.Column("responseTimeMillis", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsStudySessionEvents.put("isCorrect", new TableInfo.Column("isCorrect", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsStudySessionEvents.put("latitude", new TableInfo.Column("latitude", "REAL", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsStudySessionEvents.put("longitude", new TableInfo.Column("longitude", "REAL", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        final HashSet<TableInfo.ForeignKey> _foreignKeysStudySessionEvents = new HashSet<TableInfo.ForeignKey>(0);
+        final HashSet<TableInfo.Index> _indicesStudySessionEvents = new HashSet<TableInfo.Index>(0);
+        final TableInfo _infoStudySessionEvents = new TableInfo("study_session_events", _columnsStudySessionEvents, _foreignKeysStudySessionEvents, _indicesStudySessionEvents);
+        final TableInfo _existingStudySessionEvents = TableInfo.read(db, "study_session_events");
+        if (!_infoStudySessionEvents.equals(_existingStudySessionEvents)) {
+          return new RoomOpenHelper.ValidationResult(false, "study_session_events(com.example.StudyApp.data.StudySessionEvent).\n"
+                  + " Expected:\n" + _infoStudySessionEvents + "\n"
+                  + " Found:\n" + _existingStudySessionEvents);
+        }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "a6b6b0d0358b2f9e1fa64b6debc9a515", "c6c05b2d6bea150cdf2987378ee009a6");
+    }, "7d60e23949fefd2f4f0203190b67301a", "a65cc5727534bcc2b58921455d27128d");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(config.context).name(config.name).callback(_openCallback).build();
     final SupportSQLiteOpenHelper _helper = config.sqliteOpenHelperFactory.create(_sqliteConfig);
     return _helper;
@@ -166,7 +188,7 @@ public final class FlashcardDatabase_Impl extends FlashcardDatabase {
   protected InvalidationTracker createInvalidationTracker() {
     final HashMap<String, String> _shadowTablesMap = new HashMap<String, String>(0);
     final HashMap<String, Set<String>> _viewTables = new HashMap<String, Set<String>>(0);
-    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "decks","flashcards","user_location");
+    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "decks","flashcards","user_location","study_session_events");
   }
 
   @Override
@@ -185,6 +207,7 @@ public final class FlashcardDatabase_Impl extends FlashcardDatabase {
       _db.execSQL("DELETE FROM `decks`");
       _db.execSQL("DELETE FROM `flashcards`");
       _db.execSQL("DELETE FROM `user_location`");
+      _db.execSQL("DELETE FROM `study_session_events`");
       super.setTransactionSuccessful();
     } finally {
       super.endTransaction();
@@ -205,6 +228,7 @@ public final class FlashcardDatabase_Impl extends FlashcardDatabase {
     _typeConvertersMap.put(FlashcardDao.class, FlashcardDao_Impl.getRequiredConverters());
     _typeConvertersMap.put(DeckDao.class, DeckDao_Impl.getRequiredConverters());
     _typeConvertersMap.put(UserLocationDao.class, UserLocationDao_Impl.getRequiredConverters());
+    _typeConvertersMap.put(StudySessionDao.class, StudySessionDao_Impl.getRequiredConverters());
     return _typeConvertersMap;
   }
 
@@ -261,6 +285,20 @@ public final class FlashcardDatabase_Impl extends FlashcardDatabase {
           _userLocationDao = new UserLocationDao_Impl(this);
         }
         return _userLocationDao;
+      }
+    }
+  }
+
+  @Override
+  public StudySessionDao studySessionDao() {
+    if (_studySessionDao != null) {
+      return _studySessionDao;
+    } else {
+      synchronized(this) {
+        if(_studySessionDao == null) {
+          _studySessionDao = new StudySessionDao_Impl(this);
+        }
+        return _studySessionDao;
       }
     }
   }

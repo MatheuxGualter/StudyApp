@@ -10,13 +10,19 @@ import com.example.StudyApp.data.FlashcardRepository
 import com.example.StudyApp.data.UserLocation
 import com.example.StudyApp.data.UserLocationDao
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.first
 import com.example.StudyApp.data.AIRepository
+import com.example.StudyApp.data.StudySessionDao
+import com.example.StudyApp.data.StudySessionEvent
 import kotlinx.coroutines.launch
 import java.util.Date
 
 class FlashcardViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: FlashcardRepository
     private val userLocationDao: UserLocationDao
+    private val studySessionDao: StudySessionDao
     private val aiRepository = AIRepository()
 
     // Fluxos para diferentes modos de visualização
@@ -25,10 +31,14 @@ class FlashcardViewModel(application: Application) : AndroidViewModel(applicatio
     val dueFlashcards: Flow<List<Flashcard>>
     val latestUserLocation: Flow<UserLocation?>
 
+    private val _verificationStatus = MutableStateFlow<Boolean?>(null)
+    val verificationStatus: StateFlow<Boolean?> = _verificationStatus
+
     init {
         val database = FlashcardDatabase.getDatabase(application)
         val flashcardDao = database.flashcardDao()
         userLocationDao = database.userLocationDao()
+        studySessionDao = database.studySessionDao()
         repository = FlashcardRepository(flashcardDao)
         allFlashcardsByReview = repository.allFlashcardsByReview
         allFlashcardsByCreation = repository.allFlashcardsByCreation
@@ -81,6 +91,79 @@ class FlashcardViewModel(application: Application) : AndroidViewModel(applicatio
                 Log.e("AI_ASSISTANT", "ViewModel: Erro ao gerar flashcards.", e)
             }
         }
+    }
+
+    fun verifyAnswerWithAI(flashcard: Flashcard, userAnswer: String) {
+        viewModelScope.launch {
+            val question = flashcard.front
+            val correct = when (flashcard.type) {
+                com.example.StudyApp.data.FlashcardType.FRONT_BACK -> flashcard.back
+                com.example.StudyApp.data.FlashcardType.CLOZE -> flashcard.clozeAnswer ?: ""
+                com.example.StudyApp.data.FlashcardType.TEXT_INPUT -> flashcard.back
+                com.example.StudyApp.data.FlashcardType.MULTIPLE_CHOICE -> {
+                    val idx = flashcard.correctOptionIndex ?: -1
+                    if (idx >= 0) flashcard.options?.getOrNull(idx) ?: "" else ""
+                }
+            }
+
+            val result = try {
+                aiRepository.verifyAnswer(question = question, correctAnswer = correct, userAnswer = userAnswer)
+            } catch (_: Exception) { false }
+            _verificationStatus.value = result
+        }
+    }
+
+    fun logStudyEvent(deckId: Long, flashcardId: Long, responseTime: Long, isCorrect: Boolean) {
+        viewModelScope.launch {
+            val latest = try { latestUserLocation.first() } catch (_: Exception) { null }
+            val event = StudySessionEvent(
+                timestamp = System.currentTimeMillis(),
+                deckId = deckId,
+                flashcardId = flashcardId,
+                responseTimeMillis = responseTime,
+                isCorrect = isCorrect,
+                latitude = latest?.latitude,
+                longitude = latest?.longitude
+            )
+            try {
+                studySessionDao.insert(event)
+            } catch (e: Exception) {
+                Log.e("Analytics", "Falha ao salvar evento de estudo", e)
+            }
+        }
+    }
+
+    // Métodos para Analytics
+    fun getAllStudyEvents(): Flow<List<StudySessionEvent>> {
+        return studySessionDao.getAllEvents()
+    }
+
+    fun getStudyEventsForDeck(deckId: Long): Flow<List<StudySessionEvent>> {
+        return studySessionDao.getEventsForDeck(deckId)
+    }
+
+    suspend fun getTotalCorrectAnswers(): Int {
+        return studySessionDao.getTotalCorrectAnswers()
+    }
+
+    suspend fun getTotalWrongAnswers(): Int {
+        return studySessionDao.getTotalWrongAnswers()
+    }
+
+    suspend fun getTotalAnswers(): Int {
+        return studySessionDao.getTotalAnswers()
+    }
+
+    suspend fun getAverageResponseTimeForCorrect(): Double? {
+        return studySessionDao.getAverageResponseTimeForCorrect()
+    }
+
+    suspend fun getTotalDecksStudied(): Int {
+        return studySessionDao.getTotalDecksStudied()
+    }
+
+    suspend fun getTotalFlashcardsStudied(): Int {
+        return studySessionDao.getTotalFlashcardsStudied()
     }
 
     fun calculateNextReview(flashcard: Flashcard, quality: Int): Flashcard {

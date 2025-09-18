@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/pedro/AndroidStudioProjects/StudyApp/app/src/main/AndroidManifest.xml:2:1-41:12
-INJECTED from /home/pedro/AndroidStudioProjects/StudyApp/app/src/main/AndroidManifest.xml:2:1-41:12
-INJECTED from /home/pedro/AndroidStudioProjects/StudyApp/app/src/main/AndroidManifest.xml:2:1-41:12
-INJECTED from /home/pedro/AndroidStudioProjects/StudyApp/app/src/main/AndroidManifest.xml:2:1-41:12
+ADDED from /home/pedro/AndroidStudioProjects/StudyApp/app/src/main/AndroidManifest.xml:2:1-44:12
+INJECTED from /home/pedro/AndroidStudioProjects/StudyApp/app/src/main/AndroidManifest.xml:2:1-44:12
+INJECTED from /home/pedro/AndroidStudioProjects/StudyApp/app/src/main/AndroidManifest.xml:2:1-44:12
+INJECTED from /home/pedro/AndroidStudioProjects/StudyApp/app/src/main/AndroidManifest.xml:2:1-44:12
 MERGED from [androidx.databinding:viewbinding:8.6.0] /home/pedro/.gradle/caches/8.10.2/transforms/58ca9a4247cb2230b3fc69b882ed8041/transformed/jetified-viewbinding-8.6.0/AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.material:material:1.10.0] /home/pedro/.gradle/caches/8.10.2/transforms/e4166ea692193fd65fba90908af93778/transformed/material-1.10.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /home/pedro/.gradle/caches/8.10.2/transforms/8fb01427f2eb07530f68c83b60e27127/transformed/constraintlayout-2.1.4/AndroidManifest.xml:2:1-11:12
@@ -51,6 +51,7 @@ MERGED from [androidx.sqlite:sqlite-framework:2.4.0] /home/pedro/.gradle/caches/
 MERGED from [androidx.sqlite:sqlite:2.4.0] /home/pedro/.gradle/caches/8.10.2/transforms/0e2c303ab6ac837708bab52bb9b8e186/transformed/sqlite-2.4.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/pedro/.gradle/caches/8.10.2/transforms/f6b5a6c839a81afb95cbf5e416d03e82/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:17:1-55:12
 MERGED from [androidx.annotation:annotation-experimental:1.3.0] /home/pedro/.gradle/caches/8.10.2/transforms/9b14d5d03aeafeda8491ec61a280d251/transformed/jetified-annotation-experimental-1.3.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.github.PhilJay:MPAndroidChart:v3.1.0] /home/pedro/.gradle/caches/8.10.2/transforms/6aede496634ab084d3e02ac4562b29ac/transformed/jetified-MPAndroidChart-v3.1.0/AndroidManifest.xml:2:1-20:12
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/pedro/.gradle/caches/8.10.2/transforms/c2278632a8963eb8475974d1986081da/transformed/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.cardview:cardview:1.0.0] /home/pedro/.gradle/caches/8.10.2/transforms/07bbe1113740333510b0402b1394435c/transformed/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.arch.core:core-runtime:2.2.0] /home/pedro/.gradle/caches/8.10.2/transforms/88da418e9ba8a541f5dd837e17165da3/transformed/core-runtime-2.2.0/AndroidManifest.xml:17:1-22:12
@@ -88,8 +89,8 @@ MERGED from [com.google.ai.client.generativeai:common:0.8.0] /home/pedro/.gradle
 	android:name
 		ADDED from /home/pedro/AndroidStudioProjects/StudyApp/app/src/main/AndroidManifest.xml:8:22-64
 application
-ADDED from /home/pedro/AndroidStudioProjects/StudyApp/app/src/main/AndroidManifest.xml:10:5-40:19
-INJECTED from /home/pedro/AndroidStudioProjects/StudyApp/app/src/main/AndroidManifest.xml:10:5-40:19
+ADDED from /home/pedro/AndroidStudioProjects/StudyApp/app/src/main/AndroidManifest.xml:10:5-43:19
+INJECTED from /home/pedro/AndroidStudioProjects/StudyApp/app/src/main/AndroidManifest.xml:10:5-43:19
 MERGED from [com.google.android.material:material:1.10.0] /home/pedro/.gradle/caches/8.10.2/transforms/e4166ea692193fd65fba90908af93778/transformed/material-1.10.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.10.0] /home/pedro/.gradle/caches/8.10.2/transforms/e4166ea692193fd65fba90908af93778/transformed/material-1.10.0/AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /home/pedro/.gradle/caches/8.10.2/transforms/8fb01427f2eb07530f68c83b60e27127/transformed/constraintlayout-2.1.4/AndroidManifest.xml:9:5-20
@@ -180,6 +181,12 @@ ADDED from /home/pedro/AndroidStudioProjects/StudyApp/app/src/main/AndroidManife
 		ADDED from /home/pedro/AndroidStudioProjects/StudyApp/app/src/main/AndroidManifest.xml:39:13-37
 	android:name
 		ADDED from /home/pedro/AndroidStudioProjects/StudyApp/app/src/main/AndroidManifest.xml:38:13-49
+activity#com.example.StudyApp.AnalyticsActivity
+ADDED from /home/pedro/AndroidStudioProjects/StudyApp/app/src/main/AndroidManifest.xml:40:9-42:40
+	android:exported
+		ADDED from /home/pedro/AndroidStudioProjects/StudyApp/app/src/main/AndroidManifest.xml:42:13-37
+	android:name
+		ADDED from /home/pedro/AndroidStudioProjects/StudyApp/app/src/main/AndroidManifest.xml:41:13-46
 uses-sdk
 INJECTED from /home/pedro/AndroidStudioProjects/StudyApp/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/pedro/AndroidStudioProjects/StudyApp/app/src/main/AndroidManifest.xml
@@ -278,6 +285,8 @@ MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/pedro/.grad
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/pedro/.gradle/caches/8.10.2/transforms/f6b5a6c839a81afb95cbf5e416d03e82/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:21:5-44
 MERGED from [androidx.annotation:annotation-experimental:1.3.0] /home/pedro/.gradle/caches/8.10.2/transforms/9b14d5d03aeafeda8491ec61a280d251/transformed/jetified-annotation-experimental-1.3.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.annotation:annotation-experimental:1.3.0] /home/pedro/.gradle/caches/8.10.2/transforms/9b14d5d03aeafeda8491ec61a280d251/transformed/jetified-annotation-experimental-1.3.0/AndroidManifest.xml:20:5-44
+MERGED from [com.github.PhilJay:MPAndroidChart:v3.1.0] /home/pedro/.gradle/caches/8.10.2/transforms/6aede496634ab084d3e02ac4562b29ac/transformed/jetified-MPAndroidChart-v3.1.0/AndroidManifest.xml:16:5-18:41
+MERGED from [com.github.PhilJay:MPAndroidChart:v3.1.0] /home/pedro/.gradle/caches/8.10.2/transforms/6aede496634ab084d3e02ac4562b29ac/transformed/jetified-MPAndroidChart-v3.1.0/AndroidManifest.xml:16:5-18:41
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/pedro/.gradle/caches/8.10.2/transforms/c2278632a8963eb8475974d1986081da/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/pedro/.gradle/caches/8.10.2/transforms/c2278632a8963eb8475974d1986081da/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.cardview:cardview:1.0.0] /home/pedro/.gradle/caches/8.10.2/transforms/07bbe1113740333510b0402b1394435c/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44

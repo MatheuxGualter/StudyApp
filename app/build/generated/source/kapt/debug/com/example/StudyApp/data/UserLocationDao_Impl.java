@@ -4,7 +4,6 @@ import android.database.Cursor;
 import android.os.CancellationSignal;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.LiveData;
 import androidx.room.CoroutinesRoom;
 import androidx.room.EntityDeletionOrUpdateAdapter;
 import androidx.room.EntityInsertionAdapter;
@@ -244,12 +243,12 @@ public final class UserLocationDao_Impl implements UserLocationDao {
   }
 
   @Override
-  public LiveData<List<UserLocation>> getAllUserLocations() {
+  public Flow<List<UserLocation>> getAllUserLocations() {
     final String _sql = "SELECT `user_location`.`id` AS `id`, `user_location`.`name` AS `name`, `user_location`.`iconName` AS `iconName`, `user_location`.`latitude` AS `latitude`, `user_location`.`longitude` AS `longitude`, `user_location`.`timestamp` AS `timestamp` FROM user_location ORDER BY timestamp DESC";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
-    return __db.getInvalidationTracker().createLiveData(new String[] {"user_location"}, false, new Callable<List<UserLocation>>() {
+    return CoroutinesRoom.createFlow(__db, false, new String[] {"user_location"}, new Callable<List<UserLocation>>() {
       @Override
-      @Nullable
+      @NonNull
       public List<UserLocation> call() throws Exception {
         final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
         try {

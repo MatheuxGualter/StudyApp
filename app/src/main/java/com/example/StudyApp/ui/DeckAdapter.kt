@@ -13,11 +13,18 @@ import com.example.StudyApp.data.Deck
 import com.example.StudyApp.util.ColorUtils
 import com.google.android.material.card.MaterialCardView
 
+
 class DeckAdapter(
     private val onItemClick: (Deck) -> Unit,
     private val onEditClick: (Deck) -> Unit = {}, // Valor padrão vazio
     private val getFlashcardCount: (Long) -> Int
 ) : ListAdapter<Deck, DeckAdapter.DeckViewHolder>(DeckDiffCallback()) {
+    private var recyclerView: RecyclerView? = null
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        this.recyclerView = recyclerView
+    }
 
     private val flashcardCounts = mutableMapOf<Long, Int>()
 
@@ -73,7 +80,10 @@ class DeckAdapter(
         flashcardCounts[deckId] = count
         val position = currentList.indexOfFirst { it.id == deckId }
         if (position != -1) {
-            notifyItemChanged(position)
+            // Agora usamos a referência salva do recyclerView
+            recyclerView?.post {
+                notifyItemChanged(position)
+            }
         }
     }
 

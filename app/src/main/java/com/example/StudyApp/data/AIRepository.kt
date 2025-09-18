@@ -92,6 +92,35 @@ class AIRepository {
         if (start == -1 || end == -1 || end <= start) return ""
         return text.substring(start, end + 1)
     }
+
+    suspend fun verifyAnswer(question: String, correctAnswer: String, userAnswer: String): Boolean = withContext(Dispatchers.IO) {
+        val prompt = """
+            Você é um verificador semântico de respostas. Compare a resposta do usuário com a resposta correta com base no significado, não na forma literal.
+            Instruções:
+            - Considere a pergunta para contexto.
+            - Ignore erros de digitação, variações gramaticais e sinônimos.
+            - Foque no significado semântico e na exatidão factual.
+            - Responda APENAS com a palavra "true" ou "false" (tudo minúsculo), sem qualquer texto adicional, explicação, pontuação ou formatação.
+
+            Pergunta:
+            ${'$'}{question.trim()}
+
+            Resposta correta (gabarito):
+            ${'$'}{correctAnswer.trim()}
+
+            Resposta do usuário:
+            ${'$'}{userAnswer.trim()}
+        """.trimIndent()
+
+        val responseText = try {
+            val response = model.generateContent(prompt)
+            response.text?.trim()?.lowercase() ?: ""
+        } catch (_: Exception) {
+            ""
+        }
+
+        return@withContext responseText == "true"
+    }
 }
 
 

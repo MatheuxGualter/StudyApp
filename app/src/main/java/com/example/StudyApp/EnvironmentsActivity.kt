@@ -2,6 +2,8 @@ package com.example.StudyApp
 
 import android.Manifest
 import android.content.Intent
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
@@ -57,15 +59,17 @@ class EnvironmentsActivity : AppCompatActivity() {
     }
 
     private fun observeLocations() {
-        viewModel.getAllUserLocations().observe(this) { locations ->
-            adapter.submitList(locations)
-            
-            if (locations.isNullOrEmpty()) {
-                binding.tvEmptyLocations.visibility = View.VISIBLE
-                binding.rvLocations.visibility = View.GONE
-            } else {
-                binding.tvEmptyLocations.visibility = View.GONE
-                binding.rvLocations.visibility = View.VISIBLE
+        lifecycleScope.launch {
+            viewModel.getAllUserLocations().collect { locations ->
+                adapter.submitList(locations)
+
+                if (locations.isNullOrEmpty()) {
+                    binding.tvEmptyLocations.visibility = View.VISIBLE
+                    binding.rvLocations.visibility = View.GONE
+                } else {
+                    binding.tvEmptyLocations.visibility = View.GONE
+                    binding.rvLocations.visibility = View.VISIBLE
+                }
             }
         }
     }

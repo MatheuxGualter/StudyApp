@@ -54,6 +54,9 @@
         <activity
             android:name="com.example.StudyApp.EnvironmentsActivity"
             android:exported="false" />
+        <activity
+            android:name="com.example.StudyApp.AnalyticsActivity"
+            android:exported="false" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"

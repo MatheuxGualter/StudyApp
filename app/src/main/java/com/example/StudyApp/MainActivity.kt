@@ -391,6 +391,10 @@ class MainActivity : AppCompatActivity() {
             R.id.action_shuffle -> {
                 true
             }
+            R.id.action_analytics -> {
+                startActivity(Intent(this, AnalyticsActivity::class.java))
+                true
+            }
             R.id.action_environments -> {
                 startActivity(Intent(this, EnvironmentsActivity::class.java))
                 finish() // Finalizando a atividade atual para evitar problemas de navegação
