@@ -1,6 +1,5 @@
 package com.example.StudyApp.data
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
@@ -12,15 +11,16 @@ interface UserLocationDao {
     @Query("SELECT * FROM user_location ORDER BY timestamp DESC LIMIT 1")
     fun getLatestLocation(): Flow<UserLocation?>
 
+    // ------ FAÇA A MUDANÇA NESTA LINHA ------
     @Query("SELECT * FROM user_location ORDER BY timestamp DESC")
-    fun getAllUserLocations(): LiveData<List<UserLocation>>
-    
+    fun getAllUserLocations(): Flow<List<UserLocation>> // Mude "LiveData" para "Flow" aqui
+
     @Query("SELECT * FROM user_location WHERE id = :id")
     suspend fun getUserLocationById(id: Long): UserLocation?
-    
+
     @Delete
     suspend fun delete(userLocation: UserLocation)
-    
+
     @Query("DELETE FROM user_location WHERE id = :id")
     suspend fun deleteById(id: Long)
 

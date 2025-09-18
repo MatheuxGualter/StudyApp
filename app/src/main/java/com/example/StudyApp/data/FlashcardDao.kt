@@ -32,7 +32,7 @@ interface FlashcardDao {
 
     // Operações CRUD
     @Insert
-    suspend fun insert(flashcard: Flashcard)
+    suspend fun insert(flashcard: Flashcard) : Long
 
     @Update
     suspend fun update(flashcard: Flashcard)

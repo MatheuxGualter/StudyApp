@@ -6,12 +6,13 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
-@Database(entities = [Deck::class, Flashcard::class, UserLocation::class], version = 5, exportSchema = false)
+@Database(entities = [Deck::class, Flashcard::class, UserLocation::class, StudySessionEvent::class], version = 6, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class FlashcardDatabase : RoomDatabase() {
     abstract fun flashcardDao(): FlashcardDao
     abstract fun deckDao(): DeckDao
     abstract fun userLocationDao(): UserLocationDao
+    abstract fun studySessionDao(): StudySessionDao
 
     companion object {
         @Volatile
@@ -29,6 +30,10 @@ abstract class FlashcardDatabase : RoomDatabase() {
                 INSTANCE = instance
                 instance
             }
+        }
+
+        suspend fun clearDatabase(context: Context) {
+            getDatabase(context).clearAllTables()
         }
     }
 }

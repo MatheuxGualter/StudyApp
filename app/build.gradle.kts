@@ -1,8 +1,19 @@
+import java.util.Properties
+import java.io.FileInputStream
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("kotlin-parcelize")
+    id("com.google.gms.google-services")
+}
+
+// Mova a lógica de carregamento para cá
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localProperties.load(FileInputStream(localPropertiesFile))
 }
 
 android {
@@ -10,8 +21,8 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.flashcards"
-        minSdk = 21
+        applicationId = "com.example.StudyApp"
+        minSdk = 23
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -28,6 +39,10 @@ android {
                 )
             }
         }
+
+        // Expor a GOOGLE_API_KEY do local.properties via BuildConfig
+        val googleApiKey = localProperties.getProperty("GOOGLE_API_KEY", "")
+        buildConfigField("String", "GOOGLE_API_KEY", "\"$googleApiKey\"")
     }
 
     buildTypes {
@@ -48,6 +63,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true // Esta linha está correta
     }
 }
 
@@ -79,8 +95,23 @@ dependencies {
     
     // Lottie para animações
     implementation("com.airbnb.android:lottie:6.1.0")
+
+    // Google Generative AI (Gemini)
+    implementation("com.google.ai.client.generativeai:generativeai:0.9.0")
     
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
+    // Firebase BoM and libraries
+    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-firestore")
+
+    implementation("androidx.activity:activity-ktx:1.9.0")
+
+    // Kotlin coroutines support for Play Services Task.await
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.3")
 }

@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class ExerciseActivity : AppCompatActivity() {
+    private var currentFlashcardForVerification: Flashcard? = null
     private lateinit var binding: ActivityExerciseBinding
     private lateinit var viewModel: FlashcardViewModel
     private var currentDeckId: Long = -1
@@ -25,6 +26,7 @@ class ExerciseActivity : AppCompatActivity() {
     private var currentIndex: Int = 0
     private var correctAnswers: Int = 0
     private var wrongAnswers: Int = 0
+    private var flashcardStartTime: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +40,23 @@ class ExerciseActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
         viewModel = ViewModelProvider(this)[FlashcardViewModel::class.java]
+        setupObservers()
         setupExercise()
+    }
+    private fun setupObservers() {
+        lifecycleScope.launch {
+            viewModel.verificationStatus.collect { isCorrect ->
+                // Apenas reaja se o valor não for nulo (um novo resultado chegou)
+                if (isCorrect != null) {
+                    hideLoadingDialog()
+                    currentFlashcardForVerification?.let { flashcard ->
+                        processResult(flashcard, isCorrect)
+                    }
+                    // Resetamos o estado para a próxima verificação
+                    viewModel.resetVerificationStatus()
+                }
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -98,6 +116,7 @@ class ExerciseActivity : AppCompatActivity() {
         binding.counterText.visibility = View.VISIBLE  // Mostra o contador durante o exercício
 
         val flashcard = flashcards[currentIndex]
+        flashcardStartTime = System.currentTimeMillis()
         val progress = ((currentIndex + 1) * 100) / flashcards.size
         binding.progressBar.progress = progress
         binding.counterText.text = "${currentIndex + 1}/${flashcards.size}"
@@ -183,13 +202,29 @@ class ExerciseActivity : AppCompatActivity() {
     }
 
     private fun checkAnswer(flashcard: Flashcard, userAnswer: String) {
-        val isCorrect = when (flashcard.type) {
+        val exactMatch = when (flashcard.type) {
             FlashcardType.FRONT_BACK -> userAnswer.equals(flashcard.back, ignoreCase = true)
             FlashcardType.CLOZE -> userAnswer.equals(flashcard.clozeAnswer, ignoreCase = true)
             FlashcardType.TEXT_INPUT -> userAnswer.equals(flashcard.back, ignoreCase = true)
-            FlashcardType.MULTIPLE_CHOICE -> userAnswer.toInt() == flashcard.correctOptionIndex
+            FlashcardType.MULTIPLE_CHOICE -> userAnswer.toIntOrNull() == flashcard.correctOptionIndex
         }
 
+        if (exactMatch) {
+            processResult(flashcard, isCorrect = true)
+        } else if (flashcard.type == FlashcardType.FRONT_BACK || flashcard.type == FlashcardType.TEXT_INPUT) {
+            // Se errou, apenas peça a verificação da IA. O observador em onCreate vai tratar do resultado.
+            currentFlashcardForVerification = flashcard
+            showLoadingDialog()
+            viewModel.verifyAnswerWithAI(flashcard, userAnswer)
+        } else {
+            // Se errou e não é um tipo de texto (ex: múltipla escolha), o resultado é final.
+            processResult(flashcard, isCorrect = false)
+        }
+    }
+
+    private fun processResult(flashcard: Flashcard, isCorrect: Boolean) {
+        val responseTime = System.currentTimeMillis() - flashcardStartTime
+        viewModel.logStudyEvent(deckId = flashcard.deckId, flashcardId = flashcard.id, responseTime = responseTime, isCorrect = isCorrect)
         if (isCorrect) {
             correctAnswers++
             showCorrectFeedback()
@@ -197,6 +232,22 @@ class ExerciseActivity : AppCompatActivity() {
             wrongAnswers++
             showWrongFeedback(flashcard)
         }
+    }
+
+    private var loadingDialog: androidx.appcompat.app.AlertDialog? = null
+    private fun showLoadingDialog() {
+        if (loadingDialog?.isShowing == true) return
+        loadingDialog = MaterialAlertDialogBuilder(this)
+            .setTitle("Aguarde...")
+            .setMessage("Verificando sua resposta com IA")
+            .setCancelable(false)
+            .create()
+        loadingDialog?.show()
+    }
+
+    private fun hideLoadingDialog() {
+        loadingDialog?.dismiss()
+        loadingDialog = null
     }
 
     private fun showCorrectFeedback() {

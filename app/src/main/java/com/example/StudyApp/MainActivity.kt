@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
@@ -25,6 +26,7 @@ import com.example.StudyApp.ui.FlashcardViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -48,6 +50,9 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
         viewModel = ViewModelProvider(this)[FlashcardViewModel::class.java]
+        if (currentDeckId != -1L) {
+            viewModel.startSyncForDeck(currentDeckId)
+        }
         setupRecyclerView()
         setupFab()
         setupBottomNavigation()
@@ -389,12 +394,40 @@ class MainActivity : AppCompatActivity() {
             R.id.action_shuffle -> {
                 true
             }
+            R.id.action_analytics -> {
+                startActivity(Intent(this, AnalyticsActivity::class.java))
+                true
+            }
             R.id.action_environments -> {
                 startActivity(Intent(this, EnvironmentsActivity::class.java))
                 finish() // Finalizando a atividade atual para evitar problemas de navegação
                 true
             }
+            R.id.action_generate_ai -> {
+                showGenerateWithAIDialog()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun showGenerateWithAIDialog() {
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_generate_ai, null)
+        val input = dialogView.findViewById<TextInputEditText>(R.id.etBaseText)
+
+        MaterialAlertDialogBuilder(this)
+            .setTitle("Gerar com IA")
+            .setView(dialogView)
+            .setPositiveButton("Gerar") { _, _ ->
+                val text = input.text?.toString()?.trim().orEmpty()
+                if (text.isNotEmpty() && currentDeckId != -1L) {
+                    viewModel.generateFlashcardsFromText(text, currentDeckId)
+                    Toast.makeText(this, "Gerando flashcards...", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Texto vazio ou baralho inválido.", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .setNegativeButton(getString(R.string.cancel), null)
+            .show()
     }
 }

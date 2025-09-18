@@ -7,8 +7,18 @@
         android:title="Embaralhar"
         app:showAsAction="ifRoom" />
     <item
+        android:id="@+id/action_analytics"
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:title="Analytics"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/action_environments"
         android:icon="@android:drawable/ic_menu_mapmode"
         android:title="Ambientes"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_generate_ai"
+        android:icon="@android:drawable/ic_menu_compass"
+        android:title="Gerar com IA"
         app:showAsAction="never" />
 </menu>
